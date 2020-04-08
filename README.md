@@ -1,54 +1,47 @@
 # postgres-sql
 
 
-yum -y install https://download.postgresql.org/pub/repos/yum/reporpms/EL-7-x86_64/pgdg-redhat-repo-latest.noarch.rpm 
-yum -y install epel-release yum-utils 
-yum-config-manager --enable pgdg12
-yum install postgresql12-server postgresql12 postgresql12-contrib 
-mkdir -p /trd0/postgres/data 
-chown -Rf postgres:postgres /trd0/postgres 
-chmod 755 /trd0
-chmod -Rf 770 /trd0/postgres
-visudo 
+PostgreSQL Apt Repository
 
-        postgres        ALL=NOPASSWD:/bin/systemctl stop postgresql-12,/bin/systemctl start postgresql-12, /bin/systemctl restart postgresql-12, /bin/systemctl status postgresql-12
+If the version included in your version of Debian is not the one you want, you can use the PostgreSQL Apt Repository. This repository will integrate with your normal systems and patch management, and provide automatic updates for all supported versions of PostgreSQL throughout the support lifetime of PostgreSQL.
 
-vim /etc/profile 
-       
-	    export PATH=$PATH:/bin:/usr/pgsql-12/bin
-	    export PGDATA=/trd0/postgres/data
+The PostgreSQL apt repository supports the currently supported stable versions of Debian:
 
-source /etc/profile
+    Buster (10.x)
+    Stretch (9.x)
+    Jessie (8.x)
 
+on the following architectures:
 
-yum install postgresql12-devel postgresql12-contrib libcurl-devel postgis25_12* gcc gcc-c++ make proj49* geos37* spatial4j libxml2* gdal* gtk3* SFCGAL* CUnit* libxslt* dblatex* ogr_fdw12 ogr_fdw12-debuginfo pgagent_12 pgagent_12-debuginfo unzip clang llvm7.0* centos-release-scl-rh llvm-toolset-7-llvm devtoolset-7 llvm5.0 llvm-toolset-7* mailx --skip-broken
+    amd64
+    i386
+    ppc64el
 
-wget https://github.com/pramsey/pgsql-http/archive/master.zip 
-unzip master.zip
-cd pgsql-http-master/ 
-make
-make install 
+To use the apt repository, follow these steps:
 
-/bin/sh /usr/lib64/pgsql/pgxs/src/makefiles/../../config/install-sh -c -m 644 ./http--1.3.sql ./http--1.2--1.3.sql ./http--1.1--1.2.sql ./http--1.0--1.1.sql  '/usr/pgsql-12/share/extension'
+    Create the file /etc/apt/sources.list.d/pgdg.list, and add a line for the repository:
 
-cp http.control /usr/pgsql-12/share/extension/ 
+         deb http://apt.postgresql.org/pub/repos/apt/ buster-pgdg main
 
-mv /var/lib/pgsql/12/data /var/lib/pgsql/12/data-dist 
+    Import the repository signing key, and update the package lists:
 
-ln -s /trd0/postgres/data /var/lib/pgsql/12/data
+         wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -
+         sudo apt-get update
 
+For more information about the apt repository, including answers to frequent questions, please see the apt page on the wiki.
+Included in distribution
 
-systemctl enable postgresql-12
-/usr/pgsql-12/bin/postgresql-12-setup initdb
-systemctl start postgresql-12 
+Debian includes PostgreSQL by default. To install PostgreSQL on Debian, use the apt-get (or other apt-driving) command:
 
+  apt-get install postgresql-11
 
-Digitar o comando ifconfig e verificar o IP interno e incluir no arquivo abaixo 
-
-vim /trd0/postgres/data/postgresql.conf 
-       listen_addresses = 'IP LAN SERVIDOR' 
-
-systemctl restart  postgresql-12
+The repository contains many different packages including third party addons. The most common and important packages are (substitute the version number as required):
+postgresql-client-11 	client libraries and client binaries
+postgresql-11 	core database server
+postgresql-contrib-9.x 	additional supplied modules (part of the postgresql-xx package in version 10 and later)
+libpq-dev 	libraries and headers for C language frontend development
+postgresql-server-dev-11 	libraries and headers for C language backend development
+pgadmin4 	pgAdmin 4 graphical administration utility
 
 # Setar a senha do usuário postgres do SO
 passwd postgres
