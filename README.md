@@ -1,9 +1,9 @@
 # postgres-sql
 
 
-PostgreSQL Apt Repository
+PostgreSQL Apt Repositorio
 
-If the version included in your version of Debian is not the one you want, you can use the PostgreSQL Apt Repository. This repository will integrate with your normal systems and patch management, and provide automatic updates for all supported versions of PostgreSQL throughout the support lifetime of PostgreSQL.
+Se a versão incluída na sua versão do Debian não é a que você deseja, você pode usar o Repositório PostgreSQL Apt. Este repositório se integrará aos seus sistemas normais e gerenciamento de patches e fornecerá atualizações automáticas para todas as versões suportadas do PostgreSQL durante toda a vida útil do PostgreSQL.
 
 The PostgreSQL apt repository supports the currently supported stable versions of Debian:
 
@@ -11,31 +11,31 @@ The PostgreSQL apt repository supports the currently supported stable versions o
     Stretch (9.x)
     Jessie (8.x)
 
-on the following architectures:
+nas seguintes arquiteturas:
 
     amd64
     i386
     ppc64el
 
-To use the apt repository, follow these steps:
+Para usar o repositório apt, siga estas etapas:
 
-    Create the file /etc/apt/sources.list.d/pgdg.list, and add a line for the repository:
+    Criar o arquivo /etc/apt/sources.list.d/pgdg.list, and add a line for the repository:
 
          deb http://apt.postgresql.org/pub/repos/apt/ buster-pgdg main
 
-    Import the repository signing key, and update the package lists:
+    Importe a chave de assinatura do repositório e atualize as listas de pacotes:
 
          wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -
          sudo apt-get update
 
-For more information about the apt repository, including answers to frequent questions, please see the apt page on the wiki.
-Included in distribution
+Para mais informações sobre o repositório do apt, incluindo respostas a perguntas frequentes, consulte a página do apt no wiki.
+Incluído na distribuição
 
-Debian includes PostgreSQL by default. To install PostgreSQL on Debian, use the apt-get (or other apt-driving) command:
+O Debian inclue o PostgreSQL por padrão. Para instalar o PostgreSQL no Debian, use o comando apt-get (ou outro gerenciador de pacotes):
 
   apt-get install postgresql-11
 
-The repository contains many different packages including third party addons. The most common and important packages are (substitute the version number as required):
+O repositório contém muitos pacotes diferentes, incluindo complementos de terceiros. Os pacotes mais comuns e importantes são (substitua o número da versão conforme necessário):
 postgresql-client-11 	client libraries and client binaries
 postgresql-11 	core database server
 postgresql-contrib-9.x 	additional supplied modules (part of the postgresql-xx package in version 10 and later)
