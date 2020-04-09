@@ -49,6 +49,9 @@ pgadmin4 	pgAdmin 4 graphical administration utility
 # Setar a senha do usuário postgres do SO
 passwd postgres
 
+Acessar o Postgres
+# su - postgres
+~$ psql
 
 
 
