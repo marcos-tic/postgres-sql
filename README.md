@@ -52,5 +52,7 @@ passwd postgres
 
 
 
-
+dependecia
+sudo apt-get update
+sudo apt-get install gnupg
 
