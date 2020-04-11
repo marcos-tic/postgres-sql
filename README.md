@@ -84,7 +84,7 @@ sudo -u postgres psql -c "SELECT version();"
 
 Login into Useraccount
 Postgres Account or Login
-Step4 :- sudo -i -u postgres  
+Step4 :- sudo -i -u postgres
 Step4 :- sudo su - postgres
 
 Exit
